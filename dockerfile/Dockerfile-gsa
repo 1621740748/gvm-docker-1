@@ -1,7 +1,7 @@
 FROM dgiorgio/gvmlibs:21.4.1
 
 # yarn nodejs
-RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 RUN apt-get clean
 RUN apt update -y && apt install -y curl apt-transport-https \
   && curl --silent --show-error https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \

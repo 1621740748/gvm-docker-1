@@ -1,5 +1,5 @@
 FROM debian:buster-20210621-slim
-RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
 RUN apt-get clean
 RUN apt update -y && apt install -y --no-install-recommends --fix-missing \
   wget git cmake gcc make clang-format pkg-config libglib2.0-dev libgpgme-dev \
