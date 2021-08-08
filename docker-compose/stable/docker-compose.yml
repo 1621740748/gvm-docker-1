@@ -10,7 +10,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - "postgres-socket:/var/run/postgresql"
+      - "./postgres-socket:/var/run/postgresql"
       - "./postgres-data:/var/lib/postgresql/data"
       - "/etc/localtime:/etc/localtime:ro"
     environment:
@@ -45,7 +45,7 @@ services:
       - "./openvas-data:/usr/local/var/lib/openvas"
       - "gvm-data:/usr/local/var/lib/gvm"
       # - "/tmp/ssmtp=/etc/ssmtp" # optional - ssmtp config path
-      - "postgres-socket:/var/run/postgresql"
+      - "./postgres-socket:/var/run/postgresql"
       - "/etc/localtime:/etc/localtime:ro"
     links:
       - gvm-openvas-scanner
@@ -79,5 +79,4 @@ services:
 volumes:
   gvm-connect:
   ospd-socket:
-  postgres-socket:
   gvm-data:    
