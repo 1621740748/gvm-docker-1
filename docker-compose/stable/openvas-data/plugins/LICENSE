@@ -1,0 +1,20 @@
+License information for Greenbone Community Feed
+------------------------------------------------
+
+The Greenbone Community Feed (GCF) is a database licensed
+under the Open Data Commons Open Database License version 1.0
+(ODbLv1).
+
+The effective license for the Vulnerability Tests (VT's) inside
+the Greenbone Community Feed is the GNU General Public License
+Version 2 (GNU GPLv2). The majority of VT's is licensed under
+"GNU GPLv2 or any later version" (GNU GPLv2+). A minority of the
+VT's is licensed under "GNU GPLv2" or under "GPLv2 or GPLv3".
+You will find the actual license of each file in its header part.
+
+ODbLv1: See file LICENSE.ODbLv1
+GPLv2: See file LICENSE.GPLv2
+
+For more information please contact Greenbone Networks GmbH:
+
+  https://www.greenbone.net or info@greenbone.net

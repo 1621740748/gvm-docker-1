@@ -11,11 +11,10 @@ services:
       - "5432:5432"
     volumes:
       - "postgres-socket:/var/run/postgresql"
-      - "postgres-data:/var/lib/postgresql/data"
+      - "./postgres-data:/var/lib/postgresql/data"
       - "/etc/localtime:/etc/localtime:ro"
     environment:
       - POSTGRES_PASSWORD=gvm
-    command: "/usr/local/bin/docker-entrypoint.sh"
   gvm-openvas-scanner:
     image: "dgiorgio/openvas-scanner:21.4.1"
     hostname: "openvas-scanner"
@@ -25,10 +24,9 @@ services:
     volumes:
       - "gvm-connect:/usr/local/var/run"
       - "ospd-socket:/var/run/ospd"
-      - "openvas-data:/usr/local/var/lib/openvas"
-      - "gvm-data:/usr/local/var/lib/gvm"
+      - "./openvas-data:/usr/local/var/lib/openvas"
+      - "./gvm-data:/usr/local/var/lib/gvm"
       - "/etc/localtime:/etc/localtime:ro"
-    command: "/usr/local/bin/docker-entrypoint.sh"  
     # environment:
     #   - COMMUNITY_NVT_RSYNC_FEED=rsync://gvm_feed_server.service.com:/nvt-feed # Custom feed server https://github.com/dgiorgio/gvm-feed-server
     #   - COMMUNITY_SCAP_RSYNC_FEED=rsync://gvm_feed_server.service.com:/scap-data # Custom feed server https://github.com/dgiorgio/gvm-feed-server
@@ -44,8 +42,8 @@ services:
     volumes:
       - "gvm-connect:/usr/local/var/run"
       - "ospd-socket:/var/run/ospd"
-      - "openvas-data:/usr/local/var/lib/openvas"
-      - "gvm-data:/usr/local/var/lib/gvm"
+      - "./openvas-data:/usr/local/var/lib/openvas"
+      - "./gvm-data:/usr/local/var/lib/gvm"
       # - "/tmp/ssmtp=/etc/ssmtp" # optional - ssmtp config path
       - "postgres-socket:/var/run/postgresql"
       - "/etc/localtime:/etc/localtime:ro"
@@ -54,8 +52,6 @@ services:
     depends_on:
       - gvm-openvas-scanner
       - gvm-postgres
-    command: ["/usr/local/sbin/gvmd", "-f", "-v", "--osp-vt-update=/var/run/ospd/ospd.sock", "--listen=0.0.0.0", "--port=9390"]
-
     # environment:
     #   - COMMUNITY_NVT_RSYNC_FEED=rsync://gvm_feed_server.service.com:/nvt-feed # Custom feed server https://github.com/dgiorgio/gvm-feed-server
     #   - COMMUNITY_SCAP_RSYNC_FEED=rsync://gvm_feed_server.service.com:/scap-data # Custom feed server https://github.com/dgiorgio/gvm-feed-server
@@ -70,7 +66,7 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - "gvm-data:/usr/local/var/lib/gvm"
+      - "./gvm-data:/usr/local/var/lib/gvm"
       - "/etc/localtime:/etc/localtime:ro"
     links:
       - gvm-gvmd
@@ -80,11 +76,7 @@ services:
       - GVMD_ADDRESS=gvm-gvmd
       - GVMD_PORT=9390
       - ENABLE_CRON=false
-    command: "/usr/local/bin/docker-entrypoint.sh"
 volumes:
   gvm-connect:
-  gvm-data:
-  openvas-data:
   ospd-socket:
   postgres-socket:
-  postgres-data:
