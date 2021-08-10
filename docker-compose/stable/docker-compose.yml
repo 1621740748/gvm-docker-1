@@ -52,6 +52,7 @@ services:
     depends_on:
       - gvm-openvas-scanner
       - gvm-postgres
+    command: /bin/sh -c "while true; do echo hello world; sleep 5; done"  
     # environment:
     #   - COMMUNITY_NVT_RSYNC_FEED=rsync://gvm_feed_server.service.com:/nvt-feed # Custom feed server https://github.com/dgiorgio/gvm-feed-server
     #   - COMMUNITY_SCAP_RSYNC_FEED=rsync://gvm_feed_server.service.com:/scap-data # Custom feed server https://github.com/dgiorgio/gvm-feed-server
